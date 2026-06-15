@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}400 Bad Request{% endblock %}
+{% block content %}
+<div class="error-page">
+  <h1>400</h1>
+  <p>Bad request. The server could not understand your request.</p>
+  <a class="btn" href="{% url 'home' %}">Back to home</a>
+</div>
+{% endblock %}

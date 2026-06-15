@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Audit Log &middot; Secure Inventory{% endblock %}
+
+{% block content %}
+<h1>Audit Log</h1>
+<p class="muted">Login attempts and important activities. Visible to administrators only.</p>
+
+<form method="get" class="search">
+  <select name="action">
+    <option value="">All actions</option>
+    {% for value, label in actions %}
+      <option value="{{ value }}" {% if value == selected_action %}selected{% endif %}>{{ label }}</option>
+    {% endfor %}
+  </select>
+  <button class="btn btn-small" type="submit">Filter</button>
+</form>
+
+<table class="table">
+  <thead>
+    <tr><th>Time</th><th>Action</th><th>User</th><th>IP address</th><th>Detail</th><th>Result</th></tr>
+  </thead>
+  <tbody>
+  {% for log in logs %}
+    <tr>
+      <td>{{ log.timestamp }}</td>
+      <td>{{ log.get_action_display }}</td>
+      <td>{{ log.user|default:log.username_attempted|default:"—" }}</td>
+      <td>{{ log.ip_address|default:"—" }}</td>
+      <td>{{ log.detail }}</td>
+      <td>
+        {% if log.success %}<span class="ok">OK</span>
+        {% else %}<span class="bad">FAIL</span>{% endif %}
+      </td>
+    </tr>
+  {% empty %}
+    <tr><td colspan="6" class="muted">No log entries yet.</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% if is_paginated %}
+<nav class="pagination">
+  {% if page_obj.has_previous %}
+    <a href="?action={{ selected_action }}&amp;page={{ page_obj.previous_page_number }}">&laquo; Prev</a>
+  {% endif %}
+  <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+  {% if page_obj.has_next %}
+    <a href="?action={{ selected_action }}&amp;page={{ page_obj.next_page_number }}">Next &raquo;</a>
+  {% endif %}
+</nav>
+{% endif %}
+{% endblock %}

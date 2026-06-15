@@ -1,0 +1,11 @@
+# Core framework
+Django>=5.0,<6.0
+
+# Password hashing (Argon2 = OWASP-recommended) — enables Argon2PasswordHasher
+argon2-cffi>=23.1.0
+
+# Loads configuration/secrets from the .env file
+python-dotenv>=1.0.1
+
+# Image handling for profile avatar uploads (ImageField support)
+Pillow>=10.0.0

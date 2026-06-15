@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}{% if form.instance.pk %}Edit item{% else %}Add item{% endif %} &middot; Secure Inventory{% endblock %}
+
+{% block content %}
+<div class="form-card">
+  <h1>{% if form.instance.pk %}Edit item{% else %}Add item{% endif %}</h1>
+
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn">Save</button>
+    <a class="btn btn-outline" href="{% url 'inventory:list' %}">Cancel</a>
+  </form>
+</div>
+{% endblock %}

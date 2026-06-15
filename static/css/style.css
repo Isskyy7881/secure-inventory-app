@@ -1,0 +1,116 @@
+/* ============================================================
+   Secure Inventory — stylesheet
+   Simple, clean styling so screenshots look tidy in the report.
+   ============================================================ */
+:root{
+  --bg:#0f172a; --panel:#1e293b; --panel-2:#273449;
+  --text:#e2e8f0; --muted:#94a3b8; --line:#334155;
+  --brand:#38bdf8; --brand-dk:#0ea5e9;
+  --ok:#22c55e; --warn:#f59e0b; --bad:#ef4444;
+}
+*{ box-sizing:border-box; }
+body{
+  margin:0; font-family: system-ui, "Segoe UI", Arial, sans-serif;
+  background:var(--bg); color:var(--text); line-height:1.5;
+}
+a{ color:var(--brand); text-decoration:none; }
+a:hover{ text-decoration:underline; }
+
+/* ---- top bar ---- */
+.topbar{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:.8rem 1.5rem; background:var(--panel); border-bottom:1px solid var(--line);
+  flex-wrap:wrap; gap:.5rem;
+}
+.brand{ font-weight:700; font-size:1.15rem; color:var(--text); }
+.nav{ display:flex; align-items:center; gap:1rem; flex-wrap:wrap; }
+.nav a{ color:var(--muted); }
+.nav a:hover{ color:var(--text); text-decoration:none; }
+
+.badge{ padding:.15rem .55rem; border-radius:999px; font-size:.78rem; font-weight:600; }
+.badge-admin{ background:rgba(56,189,248,.18); color:var(--brand); }
+.badge-user{ background:rgba(148,163,184,.18); color:var(--muted); }
+
+/* ---- layout ---- */
+.container{ max-width:960px; margin:0 auto; padding:1.5rem; }
+.footer{ text-align:center; color:var(--muted); padding:1.5rem; border-top:1px solid var(--line); }
+.page-head{ display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+.muted{ color:var(--muted); }
+
+/* ---- hero / cards ---- */
+.hero{ padding:1rem 0 2rem; }
+.hero h1{ font-size:2rem; margin:.2rem 0; }
+.lead{ color:var(--muted); max-width:60ch; }
+.hero-actions{ display:flex; gap:.75rem; margin-top:1rem; }
+.cards{ display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem; margin-top:1rem; }
+.card{ background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:1.1rem; }
+.card h3{ margin:.1rem 0 .4rem; }
+.card-link{ display:block; color:inherit; }
+.card-link:hover{ border-color:var(--brand); text-decoration:none; }
+
+/* ---- buttons ---- */
+.btn{
+  display:inline-block; background:var(--brand); color:#04293a; font-weight:600;
+  padding:.55rem 1rem; border-radius:8px; border:0; cursor:pointer; font-size:.95rem;
+}
+.btn:hover{ background:var(--brand-dk); text-decoration:none; }
+.btn-small{ padding:.4rem .7rem; font-size:.85rem; }
+.btn-outline{ background:transparent; border:1px solid var(--line); color:var(--text); }
+.btn-danger{ background:var(--bad); color:#fff; }
+.btn-row{ display:flex; gap:.6rem; margin-top:1rem; flex-wrap:wrap; }
+.link-btn{ background:none; border:0; color:var(--muted); cursor:pointer; font:inherit; padding:0; }
+.link-btn:hover{ color:var(--text); }
+.inline-form{ display:inline; }
+.danger-link{ color:var(--bad); }
+
+/* ---- forms ---- */
+.form-card{ max-width:460px; margin:0 auto; background:var(--panel);
+  border:1px solid var(--line); border-radius:12px; padding:1.5rem; }
+.form-card h1{ margin-top:0; }
+form p{ margin:.6rem 0; }
+input, select, textarea{
+  width:100%; padding:.55rem .65rem; background:var(--panel-2); color:var(--text);
+  border:1px solid var(--line); border-radius:8px; font:inherit;
+}
+input[type=checkbox]{ width:auto; }
+label{ display:block; margin-bottom:.2rem; color:var(--muted); font-size:.9rem; }
+.helptext, .helptext li{ color:var(--muted); font-size:.8rem; }
+ul.errorlist{ color:var(--bad); list-style:none; padding:0; margin:.2rem 0; font-size:.85rem; }
+
+.search{ display:flex; gap:.5rem; margin:1rem 0; }
+.search input, .search select{ max-width:320px; }
+
+/* ---- tables ---- */
+.table{ width:100%; border-collapse:collapse; margin-top:1rem; background:var(--panel);
+  border:1px solid var(--line); border-radius:10px; overflow:hidden; }
+.table th, .table td{ padding:.6rem .75rem; text-align:left; border-bottom:1px solid var(--line); }
+.table th{ background:var(--panel-2); font-size:.85rem; text-transform:uppercase; letter-spacing:.03em; color:var(--muted); }
+.table tr:last-child td{ border-bottom:0; }
+.actions a{ margin-right:.6rem; }
+
+/* ---- detail list ---- */
+.detail{ display:grid; grid-template-columns:160px 1fr; gap:.4rem 1rem; margin:1rem 0;
+  background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:1rem; }
+.detail dt{ color:var(--muted); }
+.detail dd{ margin:0; }
+
+/* ---- profile ---- */
+.profile{ display:flex; gap:1.5rem; align-items:flex-start; flex-wrap:wrap; }
+.avatar{ width:96px; height:96px; border-radius:50%; object-fit:cover; border:2px solid var(--line); }
+.avatar-placeholder{ display:flex; align-items:center; justify-content:center;
+  background:var(--panel-2); color:var(--brand); font-size:2.2rem; font-weight:700; }
+
+/* ---- messages ---- */
+.messages{ list-style:none; padding:0; margin:0 0 1rem; }
+.msg{ padding:.6rem .9rem; border-radius:8px; margin-bottom:.5rem; border:1px solid var(--line); }
+.msg-success{ background:rgba(34,197,94,.12); border-color:var(--ok); }
+.msg-danger{ background:rgba(239,68,68,.12); border-color:var(--bad); }
+.msg-warning{ background:rgba(245,158,11,.12); border-color:var(--warn); }
+.msg-info{ background:rgba(56,189,248,.12); border-color:var(--brand); }
+
+/* ---- misc ---- */
+.ok{ color:var(--ok); font-weight:600; }
+.bad{ color:var(--bad); font-weight:600; }
+.pagination{ display:flex; gap:1rem; align-items:center; margin-top:1rem; color:var(--muted); }
+.error-page{ text-align:center; padding:3rem 0; }
+.error-page h1{ font-size:4rem; color:var(--brand); margin:0; }

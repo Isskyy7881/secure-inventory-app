@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}My Profile &middot; Secure Inventory{% endblock %}
+
+{% block content %}
+<h1>My Profile</h1>
+
+<div class="profile">
+  {% if profile_user.avatar %}
+    <img class="avatar" src="{{ profile_user.avatar.url }}" alt="Profile picture">
+  {% else %}
+    <div class="avatar avatar-placeholder">{{ profile_user.username|first|upper }}</div>
+  {% endif %}
+
+  <dl class="detail">
+    <dt>Username</dt><dd>{{ profile_user.username }}</dd>
+    <dt>Role</dt>
+    <dd>
+      <span class="badge {% if profile_user.is_admin %}badge-admin{% else %}badge-user{% endif %}">
+        {{ profile_user.get_role_display }}
+      </span>
+    </dd>
+    <dt>Full name</dt><dd>{{ profile_user.get_full_name|default:"—" }}</dd>
+    <dt>Email</dt><dd>{{ profile_user.email }}</dd>
+    <dt>Phone</dt><dd>{{ profile_user.phone|default:"—" }}</dd>
+    <dt>Date joined</dt><dd>{{ profile_user.date_joined }}</dd>
+    <dt>Last login</dt><dd>{{ profile_user.last_login|default:"—" }}</dd>
+  </dl>
+</div>
+
+<a class="btn" href="{% url 'profile_edit' %}">Edit profile</a>
+{% endblock %}

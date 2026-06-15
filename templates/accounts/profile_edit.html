@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Edit Profile &middot; Secure Inventory{% endblock %}
+
+{% block content %}
+<div class="form-card">
+  <h1>Edit profile</h1>
+
+  {# enctype is required so the avatar file is actually uploaded #}
+  <form method="post" enctype="multipart/form-data" novalidate>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn">Save changes</button>
+    <a class="btn btn-outline" href="{% url 'profile' %}">Cancel</a>
+  </form>
+</div>
+{% endblock %}

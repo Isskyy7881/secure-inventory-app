@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Login &middot; Secure Inventory{% endblock %}
+
+{% block content %}
+<div class="form-card">
+  <h1>Login</h1>
+
+  {% if form.non_field_errors %}
+    <ul class="messages">
+      {% for error in form.non_field_errors %}<li class="msg msg-danger">{{ error }}</li>{% endfor %}
+    </ul>
+  {% endif %}
+
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn">Login</button>
+  </form>
+
+  <p class="muted">No account? <a href="{% url 'register' %}">Register here</a>.</p>
+</div>
+{% endblock %}

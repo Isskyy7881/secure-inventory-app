@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Dashboard &middot; Secure Inventory{% endblock %}
+
+{% block content %}
+<h1>Dashboard</h1>
+<p>Signed in as <strong>{{ user.username }}</strong>
+   (<span class="role-text">{{ user.get_role_display }}</span>).</p>
+
+<section class="cards">
+  <a class="card card-link" href="{% url 'inventory:list' %}">
+    <h3>Inventory</h3>
+    <p>{% if user.is_admin %}Add, edit and remove stock items.{% else %}Browse stock items.{% endif %}</p>
+  </a>
+
+  <a class="card card-link" href="{% url 'profile' %}">
+    <h3>My Profile</h3>
+    <p>View and update your account details.</p>
+  </a>
+
+  {% if user.is_admin %}
+  <a class="card card-link" href="{% url 'auditlog:list' %}">
+    <h3>Audit Log</h3>
+    <p>Review login attempts and important activities.</p>
+  </a>
+  <a class="card card-link" href="{% url 'inventory:add' %}">
+    <h3>Add Item</h3>
+    <p>Create a new inventory item.</p>
+  </a>
+  {% endif %}
+</section>
+{% endblock %}

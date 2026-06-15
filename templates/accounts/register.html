@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Register &middot; Secure Inventory{% endblock %}
+
+{% block content %}
+<div class="form-card">
+  <h1>Create an account</h1>
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn">Register</button>
+  </form>
+  <p class="muted">Already registered? <a href="{% url 'login' %}">Login here</a>.</p>
+</div>
+{% endblock %}

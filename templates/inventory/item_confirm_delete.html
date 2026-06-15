@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Delete item &middot; Secure Inventory{% endblock %}
+
+{% block content %}
+<div class="form-card">
+  <h1>Delete item</h1>
+  <p>Are you sure you want to delete
+     <strong>{{ item.name }}</strong> ({{ item.sku }})? This cannot be undone.</p>
+
+  {# POST + CSRF token: deletion is never done with a plain GET link #}
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Yes, delete</button>
+    <a class="btn btn-outline" href="{% url 'inventory:list' %}">Cancel</a>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}{{ item.name }} &middot; Secure Inventory{% endblock %}
+
+{% block content %}
+<h1>{{ item.name }}</h1>
+
+<dl class="detail">
+  <dt>SKU</dt><dd>{{ item.sku }}</dd>
+  <dt>Category</dt><dd>{{ item.get_category_display }}</dd>
+  <dt>Quantity</dt><dd>{{ item.quantity }}</dd>
+  <dt>Unit price</dt><dd>RM {{ item.unit_price }}</dd>
+  <dt>Total value</dt><dd>RM {{ item.total_value }}</dd>
+  <dt>Description</dt><dd>{{ item.description|default:"—" }}</dd>
+  <dt>Created by</dt><dd>{{ item.created_by|default:"—" }}</dd>
+  <dt>Last updated</dt><dd>{{ item.updated_at }}</dd>
+</dl>
+
+<div class="btn-row">
+  {% if user.is_admin %}
+    <a class="btn" href="{% url 'inventory:edit' item.pk %}">Edit</a>
+    <a class="btn btn-danger" href="{% url 'inventory:delete' item.pk %}">Delete</a>
+  {% endif %}
+  <a class="btn btn-outline" href="{% url 'inventory:list' %}">Back to list</a>
+</div>
+{% endblock %}

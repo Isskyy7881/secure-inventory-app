@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Secure Inventory{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="{% url 'home' %}">&#128274; Secure Inventory</a>
+  <nav class="nav">
+    {% if user.is_authenticated %}
+      <a href="{% url 'dashboard' %}">Dashboard</a>
+      <a href="{% url 'inventory:list' %}">Inventory</a>
+      {% if user.is_admin %}<a href="{% url 'auditlog:list' %}">Audit Log</a>{% endif %}
+      <a href="{% url 'profile' %}">Profile</a>
+      <span class="badge {% if user.is_admin %}badge-admin{% else %}badge-user{% endif %}">
+        {{ user.username }} &middot; {{ user.get_role_display }}
+      </span>
+      <form action="{% url 'logout' %}" method="post" class="inline-form">
+        {% csrf_token %}
+        <button type="submit" class="link-btn">Logout</button>
+      </form>
+    {% else %}
+      <a href="{% url 'login' %}">Login</a>
+      <a class="btn btn-small" href="{% url 'register' %}">Register</a>
+    {% endif %}
+  </nav>
+</header>
+
+<main class="container">
+  {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+        <li class="msg msg-{{ message.tags }}">{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  {% block content %}{% endblock %}
+</main>
+
+<footer class="footer">
+  <small>IKB21503 Secure Software Development &middot; Secure Inventory (demo) &middot; built on Django</small>
+</footer>
+</body>
+</html>

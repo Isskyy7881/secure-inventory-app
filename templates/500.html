@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>500 Server Error</title>
+  <style>
+    body { font-family: system-ui, Arial, sans-serif; background:#0f172a; color:#e2e8f0;
+           display:flex; min-height:100vh; align-items:center; justify-content:center; margin:0; }
+    .box { text-align:center; }
+    h1 { font-size:4rem; margin:0; color:#38bdf8; }
+    a { color:#38bdf8; }
+  </style>
+</head>
+<body>
+  {# Standalone (no context processors) so it always renders, even mid-failure.
+     No stack trace or internal detail is shown to the user. #}
+  <div class="box">
+    <h1>500</h1>
+    <p>Something went wrong on our side. Please try again later.</p>
+    <a href="/">Back to home</a>
+  </div>
+</body>
+</html>
