@@ -158,7 +158,7 @@ secure-inventory-app/
 ## 9. Screenshots
 
 See `docs/screenshots/` for captured screens (home, login, dashboard,
-inventory list, add/edit item, audit log, profile).
+inventory list, add/edit item, audit log, profile)..
 
 ---
 
