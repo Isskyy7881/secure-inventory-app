@@ -17,3 +17,9 @@ class AuditLogAdmin(admin.ModelAdmin):
 
     def has_change_permission(self, request, obj=None):
         return False  # immutable from the admin UI
+234234234
+234234234
+23423423
+
+234234234
+234234
